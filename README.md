@@ -1,148 +1,112 @@
-# AgentMesh — Autonomous x402 Research Network
-
-> **Vibe-A-Thon @ Daksh 2026 · Heritage Campus**
-
-AgentMesh is the first autonomous AI agent that **earns and spends USDC independently**. It takes any research topic, deploys sub-agents that hit real paid API gateways behind HTTP 402 gates, makes gasless USDC payments on Avalanche Fuji via SDK, synthesizes real intelligence using Gemini AI, and self-registers its identity on the ERC-8004 on-chain agent registry.
-
-## ■ THE WINNING PROJECT: AgentMesh
-**AgentMesh: The Autonomous x402 Research Network**
-
-### ■ YOUR PROJECT'S MARVEL AVATAR
-| Character | Why They Fit | Object They Hold |
-| :--- | :--- | :--- |
-| **Iron Man (Tony Stark)** | Autonomous AI agent + tech genius. Builds systems that work independently, pays bills and runs networks solo. | **Arc Reactor** = x402 payment engine powering everything |
-| **Doctor Strange** | Controls multiple realities/networks, orchestrates agent mesh across chains, sees all possible outcomes (LLM). | **Eye of Agamotto** = multi-chain USDC payment oracle |
-| **Spider-Man 2099** | Future web-slinger — web of agents. Connects nodes across networks, rapid deployment, futuristic build. | **Web-shooters** = facinet SDK firing gasless transactions |
-
-★ **WINNER PICK:** Iron Man holding the Arc Reactor = x402 payment engine powering everything.
-
----
-
-## 🏆 Team: FULLSTACK SHINOBI
-- **Leader:** SOUMODITYA DAS
-- **Advisor:** SOUNAK KUMAR MONDAL
-- **Presenter:** RAJASHRI CHAUDHURI
+<div align="center">
+  <img src="https://media.giphy.com/media/xTiTnzg2zE6q9vJ1io/giphy.gif" alt="AgentMesh Arc Reactor" width="100%" style="border-radius: 12px; border: 2px solid #00e5ff; box-shadow: 0 0 20px rgba(0,229,255,0.4);" />
+  
+  <h1 style="color: #00e5ff; font-family: monospace; font-size: 3em; margin-bottom: 0;">⚡ AgentMesh ⚡</h1>
+  <p style="font-size: 1.2em; color: #a0aec0; letter-spacing: 2px;">THE AUTONOMOUS x402 RESEARCH NETWORK</p>
+  
+  <p>
+    <b>Vibe-A-Thon @ Daksh 2026 · Heritage Campus</b><br/>
+    <i>Built by Team <b>FULLSTACK SHINOBI</b></i>
+  </p>
+  
+  <p>
+    <img src="https://img.shields.io/badge/Blockchain-Avalanche%20Fuji-red?style=for-the-badge&logo=avalanche" />
+    <img src="https://img.shields.io/badge/Payment-x402%20Protocol-00e5ff?style=for-the-badge" />
+    <img src="https://img.shields.io/badge/AI-Gemini%201.5%20Flash-orange?style=for-the-badge&logo=google" />
+    <img src="https://img.shields.io/badge/Frontend-Next.js%2015-black?style=for-the-badge&logo=next.js" />
+  </p>
+</div>
 
 ---
 
-## 🏗 Architecture
+## 🦸‍♂️ The Marvel Avatar: Iron Man's Arc Reactor
 
-```
-USER QUERY
-    │
-    ▼
-MASTER AGENT (agentRunner.js)
-    │  Gemini LLM → targeted sub-queries
-    │
-    ├─► SUB-AGENT 1 → GET /research/news
-    │       → 402 Payment Required detected
-    │       → X402 Payment / Referral Bypass (DAKSH_FULLSTACKSHINOBI)
-    │       → Real data from NewsAPI / Guardian API
-    │
-    ├─► SUB-AGENT 2 → GET /research/crypto
-    │       → 402 → pay/bypass → CoinCap Market Data
-    │
-    ├─► SUB-AGENT 3 → GET /research/quotes
-    │       → 402 → pay/bypass → ZenQuotes API
-    │
-    ▼
-SYNTHESIS (Gemini AI → structured report)
-    │
-    ▼
-ERC-8004 SELF-REGISTRATION (Contract → AgentRegistry.sol)
-    │
-    ▼
-OUTPUT: Report + Payment Proofs + Registry txHash (all in Dashboard)
-```
+In a world where AI agents are blind and broke, **AgentMesh is Tony Stark**. 
+It doesn't just read the internet—it **earns, spends, and transacts entirely on its own**. 
+
+The core of AgentMesh is its **x402 Payment Engine* (The Arc Reactor). When an AI hits a premium API paywall (`HTTP 402 Payment Required`), AgentMesh doesn't crash. It seamlessly fires a gasless USDC transaction via the `facinet` SDK on Avalanche Fuji, generates a cryptographic payment proof, and unlocks the data. 
+
+*No humans. No credit cards. Pure autonomous finance.*
 
 ---
 
-## 🚀 Quick Start
+## 🚀 The x402 Architecture Masterpiece
 
+AgentMesh operates on a state-of-the-art multi-agent orchestration pattern integrated intimately with HTTP 402 payment rails.
+
+<br>
+<div align="center">
+  <img src="https://media.giphy.com/media/26tn33aiTi1jIGs4E/giphy.gif" alt="Data Flow" width="80%" style="border-radius: 8px; border: 1px solid #333;" />
+</div>
+<br>
+
+### How it Flows:
+1. **The Catalyst (User Query):** You request deep-dive intelligence (e.g., "Future of Agentic AI 2026").
+2. **The Orchestrator (Gemini):** The Master Agent breaks your request down into 3 targeted sub-queries.
+3. **The x402 Paywalls (Sub-Agents):** 
+   - Agents hit premium endpoints (`/research/news`, `/research/crypto`, etc.).
+   - The Gateway responds: `402 Payment Required`.
+4. **The Arc Reactor (Auto-Payment):**
+   - AgentMesh automatically signs an ERC-3009 gasless transaction.
+   - It pays `0.1 USDC` to the API facilitator on Avalanche Fuji.
+   - It retries the request with an `X-Payment-Proof` header representing the confirmed `txHash`.
+   - *Demo Bypass:* Alternatively uses standard `X-Bypass-Code: DAKSH_FULLSTACKSHINOBI` for free verification.
+5. **The Synthesis:** Data is ingested, collated, and synthesized into a master intelligence report by Gemini.
+6. **The Chronicle (ERC-8004):** The agent registers its creation and existence on the blockchain via `AgentRegistry.sol`.
+
+---
+
+## 📡 Premium x402 Integrated Endpoints
+
+Our gateway is wired to real-world data streams, all protected by the x402 protocol:
+
+| Endpoint | Intelligence Source | Paywall State |
+|----------|---------------------|---------------|
+| `GET /research/news` | NewsAPI & Guardian API | **Active 402** |
+| `GET /research/crypto` | CoinCap Live Market Data | **Active 402** |
+| `GET /research/quotes` | ZenQuotes Tech Analytics | **Active 402** |
+| `GET /research/academic` | arXiv Papers | Free Tier |
+| `GET /research/tech` | HackerNews Algolia | Free Tier |
+
+---
+
+## 💻 Tech Stack: The Fullstack Shinobi Arsenal
+
+- **Frontend HUD:** Next.js 15, React 19, Tailwind CSS v4, custom Arc-Reactor Glow UI.
+- **Backend Core:** Node.js API Gateway, Next.js Serverless Functions.
+- **Web3 / Crypto:** `ethers.js` v6, `facinet` SDK, Avalanche Fuji Testnet.
+- **Smart Contracts:** Solidity, Hardhat, ERC-8004 Agent Registry.
+- **AI Brain:** Google Gemini 1.5 Flash.
+
+---
+
+## ⚡ Deployment & Local Setup
+
+### Run it Locally
 ```bash
-# 1. Clone & install
+# 1. Clone the repo
 git clone https://github.com/soumoditt-source/AGENT-MESH.git
 cd AGENT-MESH
+
+# 2. Install dependencies
 npm install
 
-# 2. Configure environment
-cp .env.example .env
-# Fill in: PRIVATE_KEY, RECIPIENT, GEMINI_API_KEY, NEWS_API_KEY
+# 3. Setup Variables (.env)
+# PRIVATE_KEY=your_key
+# RECIPIENT=wallet_address
+# GEMINI_API_KEY=your_key
 
-# 3. Start Next.js Frontend
+# 4. Boot the Arc Reactor
 npm run dev
-
-# 4. Start x402 Gateway (in a separate terminal)
-node server.js
 ```
-
-Then open `http://localhost:3000` to interact with the premium Next.js dashboard!
-
----
-
-## 🔐 Environment Variables
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `PRIVATE_KEY` | ✅ | MetaMask wallet private key (hex) |
-| `RECIPIENT` | ✅ | Wallet address receiving USDC payments |
-| `GEMINI_API_KEY` | ✅ | Google AI Studio API key |
-| `NEWS_API_KEY` | Optional | newsapi.org free key (500 req/day) |
-| `GUARDIAN_API_KEY` | Optional | Guardian Open Platform (Fallback provided natively) |
-| `REGISTRY_ADDRESS` | After deploy | AgentRegistry.sol address on Fuji |
-| `PORT` | Optional | NextJS Port (default: 3000) |
-| `API_PORT` | Optional | Express Gateway Port (default: 3001) |
+Navigate to `http://localhost:3000` to access the Command Center. Use referral code `DAKSH_FULLSTACKSHINOBI` to bypass live payments during demonstrations.
 
 ---
 
-## 📡 x402 API Endpoints
-
-All endpoints require HTTP 402 payment (or the `DAKSH_FULLSTACKSHINOBI` bypass code header) before returning data:
-
-| Endpoint | Data Source |
-|----------|-------------|
-| `GET /research/news` | NewsAPI + Guardian API Fallback |
-| `GET /research/academic` | arXiv papers |
-| `GET /research/social` | Reddit public JSON |
-| `GET /research/tech` | HackerNews Algolia |
-| `GET /research/wiki` | Wikipedia REST API |
-| `GET /research/crypto` | CoinCap API |
-| `GET /research/quotes` | ZenQuotes API |
-
-**x402 Bypass flow:**
-```
-Client Request: 
-GET /research/news?q=AI+regulation
-Headers: { "X-Bypass-Code": "DAKSH_FULLSTACKSHINOBI" }
-Result: 200 OK + Real Data (No 402 Payment Required!)
-```
-
----
-
-## 🛠 Tech Stack
-
-| Layer | Technology |
-|-------|------------|
-| Frontend | Next.js 15, React 19, Tailwind CSS, Radix UI |
-| Agent Payments | Node.js, Express, `ethers.js` v6, ERC-3009 gasless USDC |
-| Blockchain | Avalanche Fuji Testnet (Chain ID 43113) |
-| AI / LLM | Google Gemini 1.5 Flash |
-| Data Sources | Guardian, CoinCap, ZenQuotes, NewsAPI, arXiv, Reddit, HackerNews, Wikipedia |
-| Contract Tools | Hardhat + @nomicfoundation/hardhat-toolbox |
-
----
-
-## 🏆 Why AgentMesh Wins
-
-| Feature | AgentMesh | Existing Tools |
-|---------|-----------|----------------|
-| End-to-End Vibe | ✅ Astonishing UI/UX | ❌ Clunky CLI / Streamlit |
-| Multi-agent APIs | ✅ Orchestrates real APIs simultaneously | ❌ Fake dummy data |
-| ERC-8004 integration | ✅ Agent registers itself on blockchain | ❌ Not implemented entirely |
-| Payment Bypass | ✅ Seamless referral codes | ❌ Fixed paywalls |
-| On-chain proof | ✅ txHash per data fetch | ❌ Off-chain only |
-| LLM synthesis | ✅ Intelligent collation into Markdown | ❌ Raw unparsed JSON dumps |
-
----
-
-*"Tony Stark didn't build the suit in a day — he built it in a cave with what he had. We built AgentMesh with an Arc Reactor and the finest UX on the planet."*
+<div align="center">
+  <img src="https://media.giphy.com/media/l0Iyl55kTeh71nTXy/giphy.gif" alt="Victory" width="100%" style="border-radius: 12px; opacity: 0.8;" />
+  <br><br>
+  <h3>Team FULLSTACK SHINOBI</h3>
+  <p><b>Leader:</b> SOUMODITYA DAS | <b>Advisor:</b> SOUNAK KUMAR MONDAL | <b>Presenter:</b> RAJASHRI CHAUDHURI</p>
+  <i>"We didn't just build an app. We built an autonomous digital citizen."</i>
+</div>
