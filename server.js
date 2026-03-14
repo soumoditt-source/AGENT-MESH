@@ -8,8 +8,8 @@
 
 import express from 'express';
 import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { executeResearch } from './lib/agentRunner.js';
 import chalk from 'chalk';
 
@@ -178,22 +178,36 @@ app.get('/research/tech', requirePayment, async (req, res) => {
   }
 });
 
-// ─── /research/wiki — Wikipedia ───────────────────────────────────────────
+// ─── /research/wiki — Wikipedia Search & Summary ───────────────────────────
 app.get('/research/wiki', requirePayment, async (req, res) => {
   const q = req.query.q || 'artificial intelligence';
   try {
-    const formatted = q.replace(/\s+/g, '_');
-    const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(formatted)}`;
-    const r = await fetch(url, { headers: { 'User-Agent': 'AgentMesh/1.0' } });
-    if (r.status === 404) {
-      return res.json({ source: 'Wikipedia', query: q, results: [{ title: q, summary: 'No Wikipedia page found.', url: '' }] });
+    // 1. Search for potential pages
+    const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(q)}&format=json&origin=*`;
+    const searchRes = await fetch(searchUrl);
+    const searchData = await searchRes.json();
+    const searchResults = searchData.query?.search || [];
+
+    if (searchResults.length === 0) {
+      return res.json({ source: 'Wikipedia', query: q, results: [{ title: q, summary: 'No relevant Wikipedia pages found.', url: '' }] });
     }
-    const data = await r.json();
-    res.json({
-      source: 'Wikipedia',
-      query: q,
-      results: [{ title: data.title, summary: data.extract, url: data.content_urls?.desktop?.page || '' }]
-    });
+
+    // 2. Fetch summaries for top 3 results
+    const results = [];
+    for (const item of searchResults.slice(0, 3)) {
+      const formatted = item.title.replace(/\s+/g, '_');
+      const summaryUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(formatted)}`;
+      const summaryRes = await fetch(summaryUrl, { headers: { 'User-Agent': 'AgentMesh/1.0' } });
+      if (summaryRes.ok) {
+        const data = await summaryRes.json();
+        results.push({
+          title: data.title,
+          summary: data.extract,
+          url: data.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${formatted}`
+        });
+      }
+    }
+    res.json({ source: 'Wikipedia', query: q, results });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -208,9 +222,9 @@ app.get('/research/crypto', requirePayment, async (req, res) => {
     const results = (data.data || []).map(coin => ({
       name: coin.name,
       symbol: coin.symbol,
-      priceUsd: `$${parseFloat(coin.priceUsd).toFixed(2)}`,
-      marketCap: `$${parseFloat(coin.marketCapUsd).toFixed(0)}`,
-      change24h: `${parseFloat(coin.changePercent24Hr).toFixed(2)}%`
+      priceUsd: `$${Number.parseFloat(coin.priceUsd).toFixed(2)}`,
+      marketCap: `$${Number.parseFloat(coin.marketCapUsd).toFixed(0)}`,
+      change24h: `${Number.parseFloat(coin.changePercent24Hr).toFixed(2)}%`
     }));
     res.json({ source: 'CoinCap', query: 'crypto assets', results });
   } catch (e) {

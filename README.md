@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://media.giphy.com/media/xTiTnzg2zE6q9vJ1io/giphy.gif" alt="AgentMesh Arc Reactor" width="100%" style="border-radius: 12px; border: 2px solid #00e5ff; box-shadow: 0 0 20px rgba(0,229,255,0.4);" />
+  <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJ6bXN6cmJ6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z&rid=3o7TKrE37v7y23S0o/giphy.gif" alt="AgentMesh Arc Reactor" width="100%" style="border-radius: 12px; border: 2px solid #00e5ff; box-shadow: 0 0 20px rgba(0,229,255,0.4);" />
   
   <h1 style="color: #00e5ff; font-family: monospace; font-size: 3em; margin-bottom: 0;">⚡ AgentMesh ⚡</h1>
   <p style="font-size: 1.2em; color: #a0aec0; letter-spacing: 2px;">THE AUTONOMOUS x402 RESEARCH NETWORK</p>

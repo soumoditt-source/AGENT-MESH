@@ -495,33 +495,27 @@ export default function AgentMeshPage() {
           className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-500 ${isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}
           style={{ borderColor: `rgba(0,200,255,${0.1 + navBackground * 0.2})`, backgroundColor: `rgba(8,20,35,${navBackground})`, backdropFilter: `blur(${12 + navBackground * 8}px)` }}
         >
-          <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 relative z-10">
               <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-400/40 bg-cyan-400/10 overflow-hidden"
                 style={{ boxShadow: `0 0 ${20 + scrollY * 0.02}px rgba(0,200,255,${0.2 + scrollY * 0.0002})`, transform: `rotate(${scrollY * 0.05}deg)` }}>
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/30 to-transparent" />
                 <Zap className="h-5 w-5 text-cyan-400 relative z-10" />
               </div>
               <span className="font-mono text-xl font-bold text-foreground tracking-tight">AgentMesh</span>
             </div>
 
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className="font-mono text-sm text-muted-foreground hover:text-cyan-400 transition-colors">Features</a>
-              <a href="#demo" className="font-mono text-sm text-muted-foreground hover:text-cyan-400 transition-colors">Demo</a>
-              {agentState.phase === 'done' && (
-                <span className="font-mono text-xs text-green-400 flex items-center gap-1">
-                  <CheckCircle className="h-3 w-3" /> Research Complete
-                </span>
-              )}
-              {agentState.phase === 'running' && (
-                <span className="font-mono text-xs text-yellow-400 flex items-center gap-1">
-                  <Loader2 className="h-3 w-3 animate-spin" /> Agent Running…
-                </span>
-              )}
+            <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-10">
+              <a href="#features" className="font-mono text-sm tracking-widest text-muted-foreground hover:text-cyan-400 transition-all hover:scale-110">FEATURES</a>
+              <a href="#demo" className="font-mono text-sm tracking-widest text-muted-foreground hover:text-cyan-400 transition-all hover:scale-110">PLATFORM</a>
+              <a href="https://agent-mesh-seven.vercel.app/" target="_blank" rel="noopener noreferrer" className="font-mono text-sm tracking-widest text-muted-foreground hover:text-cyan-400 transition-all hover:scale-110">DOCS</a>
             </div>
 
-            <div className="flex items-center gap-3">
-              <Button variant="ghost" size="sm" className="font-mono text-muted-foreground hover:text-foreground">
+            <div className="flex items-center gap-3 relative z-10">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="font-mono text-muted-foreground hover:text-foreground"
+                onClick={() => window.open('https://github.com/soumoditt-source/AGENT-MESH', '_blank')}
+              >
                 <Github className="h-4 w-4 mr-2" />
                 <span className="hidden sm:inline">GitHub</span>
               </Button>
@@ -671,8 +665,12 @@ export default function AgentMeshPage() {
                 style={{ boxShadow: '0 0 60px rgba(0,200,255,0.5), 0 0 100px rgba(0,200,255,0.2)' }}>
                 <Play className="h-5 w-5 mr-2" />Deploy Now<ArrowRight className="ml-3 h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline"
-                className="font-mono border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/10 px-10 py-7 text-lg">
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="font-mono border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/10 px-10 py-7 text-lg"
+                onClick={() => window.open('https://github.com/soumoditt-source/AGENT-MESH', '_blank')}
+              >
                 <Github className="h-5 w-5 mr-2" />View Source
               </Button>
             </div>
