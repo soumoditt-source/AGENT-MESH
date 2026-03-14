@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJ6bXN6cmJ6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z&rid=3o7TKrE37v7y23S0o/giphy.gif" alt="AgentMesh Arc Reactor" width="100%" style="border-radius: 12px; border: 2px solid #00e5ff; box-shadow: 0 0 20px rgba(0,229,255,0.4);" />
+  <img src="https://i.giphy.com/xTiTnzg2zE6q9vJ1io.gif" alt="AgentMesh Arc Reactor" width="100%" style="border-radius: 12px; border: 2px solid #00e5ff; box-shadow: 0 0 20px rgba(0,229,255,0.4);" />
   
   <h1 style="color: #00e5ff; font-family: monospace; font-size: 3em; margin-bottom: 0;">⚡ AgentMesh ⚡</h1>
   <p style="font-size: 1.2em; color: #a0aec0; letter-spacing: 2px;">THE AUTONOMOUS x402 RESEARCH NETWORK</p>
@@ -42,7 +42,7 @@ AgentMesh operates on a state-of-the-art multi-agent orchestration pattern integ
 
 <br>
 <div align="center">
-  <img src="https://media.giphy.com/media/26tn33aiTi1jIGs4E/giphy.gif" alt="Data Flow" width="80%" style="border-radius: 8px; border: 1px solid #333;" />
+  <img src="https://i.giphy.com/26tn33aiTi1jIGs4E.gif" alt="Data Flow" width="80%" style="border-radius: 8px; border: 1px solid #333;" />
 </div>
 <br>
 
@@ -110,7 +110,7 @@ Navigate to `http://localhost:3000` to access the Command Center. Use referral c
 ---
 
 <div align="center">
-  <img src="https://media.giphy.com/media/l0Iyl55kTeh71nTXy/giphy.gif" alt="Victory" width="100%" style="border-radius: 12px; opacity: 0.8;" />
+  <img src="https://i.giphy.com/l0Iyl55kTeh71nTXy.gif" alt="Victory" width="100%" style="border-radius: 12px; opacity: 0.8;" />
   <br><br>
   <h3>Team FULLSTACK SHINOBI</h3>
   <p><b>Leader:</b> SOUMODITYA DAS | <b>Advisor:</b> SOUNAK KUMAR MONDAL | <b>Presenter:</b> RAJASHRI CHAUDHURI</p>
