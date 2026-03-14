@@ -16,11 +16,8 @@ const nextConfig = {
     ],
   },
   // Allow server-action / API routes to use Node.js built-ins (fs, path, crypto, ethers)
-  experimental: {
-    serverComponentsExternalPackages: ['ethers', 'facinet', 'hardhat'],
-  },
   // Keep API routes running on Node.js runtime (not Edge)
-  serverExternalPackages: ['ethers', 'facinet'],
+  serverExternalPackages: ['ethers', 'facinet', 'hardhat'],
 }
 
 export default nextConfig
