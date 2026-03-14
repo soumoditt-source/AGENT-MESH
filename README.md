@@ -106,7 +106,7 @@ Navigate to `http://localhost:3000` to access the Command Center. Use referral c
 ---
 <br>
 <div align="center">
-  <img src="https://media.giphy.com/media/l41lOflvX8F7A8fSM/giphy.gif" alt="Victory Protocol" width="100%" style="border-radius: 12px; opacity: 0.9;" />
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnd3cnFsOWFieGZhMDE4dW1yaGNsejAzYWlkbzRpc3RqdmU3eGVnbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U4FkC2VqpeNRHjTDQ5/giphy.gif" alt="Tony Stark Conclusion" width="100%" style="border-radius: 12px; opacity: 0.9;" />
 </div>
 <br><br>
   <h3>Team FULLSTACK SHINOBI</h3>
