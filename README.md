@@ -104,10 +104,11 @@ npm run dev
 Navigate to `http://localhost:3000` to access the Command Center. Use referral code `DAKSH_FULLSTACKSHINOBI` to bypass live payments during demonstrations.
 
 ---
-
+<br>
 <div align="center">
-  <img src="https://media.giphy.com/media/l0Iyl55kTeh71nTXy/giphy.gif" alt="Victory" width="100%" style="border-radius: 12px; opacity: 0.8;" />
-  <br><br>
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHNmaHg4eTJ5M2FoYzVuOThrOTMwbHJhNjFvbDg1dzluNGRiMXkyciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AbYxDs20DECQw/giphy.gif" alt="Iron Man Action" width="80%" style="border-radius: 8px; border: 1px solid #00e5ff;" />
+</div>
+<br><br>
   <h3>Team FULLSTACK SHINOBI</h3>
   <p><b>Leader:</b> SOUMODITYA DAS | <b>Advisor:</b> SOUNAK KUMAR MONDAL | <b>Presenter:</b> RAJASHRI CHAUDHURI</p>
   <i>"We didn't just build an app. We built an autonomous digital citizen."</i>
