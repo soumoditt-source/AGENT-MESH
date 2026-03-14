@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AgentMesh — Autonomous x402 Research Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- HUD Scan Lines Overlay -->
+<div class="scanlines"></div>
+<div class="hud-grid"></div>
+
+<!-- ── TOP HUD BAR ─────────────────────────────────────────── -->
+<header class="hud-header">
+  <div class="hud-logo">
+    <div class="arc-reactor">
+      <div class="arc-inner"></div>
+      <div class="arc-pulse"></div>
+    </div>
+    <div class="logo-text">
+      <span class="logo-main">AGENTMESH</span>
+      <span class="logo-sub">AUTONOMOUS X402 RESEARCH NETWORK · AVALANCHE FUJI</span>
+    </div>
+  </div>
+  <div class="hud-status-bar">
+    <div class="status-chip" id="networkStatus">
+      <span class="dot pulse green"></span>
+      <span>AVALANCHE FUJI</span>
+    </div>
+    <div class="status-chip" id="serverStatus">
+      <span class="dot" id="serverDot"></span>
+      <span id="serverLabel">GATEWAY OFFLINE</span>
+    </div>
+    <div class="status-chip">
+      <span class="mono" id="currentTime">--:--:--</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── MAIN GRID ──────────────────────────────────────────── -->
+<main class="main-grid">
+
+  <!-- LEFT: COMMAND PANEL ─────────────────────────────────── -->
+  <section class="panel command-panel" id="commandPanel">
+    <div class="panel-header">
+      <span class="panel-icon">⬡</span>
+      <span>RESEARCH COMMAND</span>
+      <span class="panel-badge">JARVIS INTERFACE</span>
+    </div>
+
+    <div class="input-group">
+      <label class="input-label">RESEARCH TOPIC</label>
+      <div class="input-wrapper">
+        <input
+          type="text"
+          id="topicInput"
+          class="hud-input"
+          placeholder="e.g. AI regulation in India 2025"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <span class="input-cursor">▮</span>
+      </div>
+    </div>
+
+    <div class="controls-row">
+      <div class="select-group">
+        <label class="input-label">PRIORITY</label>
+        <select id="prioritySelect" class="hud-select">
+          <option value="High">HIGH</option>
+          <option value="Medium" selected>MEDIUM</option>
+          <option value="Low">LOW</option>
+        </select>
+      </div>
+      <div class="select-group">
+        <label class="input-label">RETRIES</label>
+        <select id="retriesSelect" class="hud-select">
+          <option value="1">1×</option>
+          <option value="2" selected>2×</option>
+          <option value="3">3×</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="launch-btn" id="launchBtn" onclick="launchAgent()">
+      <span class="btn-icon">◈</span>
+      <span class="btn-text">LAUNCH AGENT MESH</span>
+      <span class="btn-glow"></span>
+    </button>
+
+    <!-- Architecture flow diagram -->
+    <div class="arch-flow">
+      <div class="flow-step active" data-step="1">
+        <div class="step-icon">◎</div>
+        <div class="step-label">USER QUERY</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" data-step="2">
+        <div class="step-icon">⬡</div>
+        <div class="step-label">GEMINI LLM</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" data-step="3">
+        <div class="step-icon">⚡</div>
+        <div class="step-label">x402 GATE</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" data-step="4">
+        <div class="step-icon">💸</div>
+        <div class="step-label">FACINET PAY</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" data-step="5">
+        <div class="step-icon">🔗</div>
+        <div class="step-label">ERC-8004</div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-val" id="statPayments">0</div>
+        <div class="stat-label">PAYMENTS MADE</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="statUSDC">$0.00</div>
+        <div class="stat-label">USDC SPENT</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="statSources">0</div>
+        <div class="stat-label">SOURCES HIT</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="statTime">—</div>
+        <div class="stat-label">ELAPSED</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CENTER: AGENT TERMINAL ──────────────────────────────── -->
+  <section class="panel terminal-panel" id="terminalPanel">
+    <div class="panel-header">
+      <span class="panel-icon">▶</span>
+      <span>AGENT TERMINAL</span>
+      <div class="terminal-controls">
+        <span class="tc tc-red" onclick="clearTerminal()"></span>
+        <span class="tc tc-yellow"></span>
+        <span class="tc tc-green"></span>
+      </div>
+    </div>
+
+    <!-- Sub-agent status rows -->
+    <div class="sub-agents" id="subAgents">
+      <div class="sa-row" id="sa-0">
+        <span class="sa-num">SA-1</span>
+        <span class="sa-endpoint">NEWS</span>
+        <span class="sa-query">—</span>
+        <span class="sa-status">IDLE</span>
+      </div>
+      <div class="sa-row" id="sa-1">
+        <span class="sa-num">SA-2</span>
+        <span class="sa-endpoint">ACADEMIC</span>
+        <span class="sa-query">—</span>
+        <span class="sa-status">IDLE</span>
+      </div>
+      <div class="sa-row" id="sa-2">
+        <span class="sa-num">SA-3</span>
+        <span class="sa-endpoint">SOCIAL</span>
+        <span class="sa-query">—</span>
+        <span class="sa-status">IDLE</span>
+      </div>
+    </div>
+
+    <div class="terminal-log" id="terminalLog">
+      <div class="log-line log-info">
+        <span class="log-time">11:39:27</span>
+        <span class="log-tag">[INIT]</span>
+        <span>AgentMesh v1.0 ready. Awaiting research topic…</span>
+      </div>
+      <div class="log-line log-info">
+        <span class="log-time">11:39:27</span>
+        <span class="log-tag">[NET]</span>
+        <span>Connecting to Avalanche Fuji Testnet (Chain ID: 43113)</span>
+      </div>
+      <div class="log-line log-sys">
+        <span class="log-time">11:39:27</span>
+        <span class="log-tag">[HUD]</span>
+        <span>Dashboard ready. Enter topic above to begin autonomous research.</span>
+      </div>
+    </div>
+
+    <!-- Payment proof feed -->
+    <div class="tx-feed-header">
+      <span class="panel-icon">⬡</span>
+      <span>TRANSACTION FEED</span>
+      <span class="tx-count" id="txCount">0 txs</span>
+    </div>
+    <div class="tx-feed" id="txFeed">
+      <div class="tx-empty">No transactions yet — launch agent to begin</div>
+    </div>
+  </section>
+
+  <!-- RIGHT: REPORT PANEL ──────────────────────────────────── -->
+  <section class="panel report-panel" id="reportPanel">
+    <div class="panel-header">
+      <span class="panel-icon">◈</span>
+      <span>INTELLIGENCE REPORT</span>
+      <div class="report-actions" id="reportActions" style="display:none">
+        <button class="action-btn" onclick="downloadReport()">⬇ SAVE</button>
+        <button class="action-btn" onclick="copyReport()">⎘ COPY</button>
+      </div>
+    </div>
+
+    <div class="report-meta" id="reportMeta" style="display:none">
+      <div class="meta-row">
+        <span class="meta-key">TOPIC</span>
+        <span class="meta-val" id="metaTopic">—</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-key">DATE</span>
+        <span class="meta-val" id="metaDate">—</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-key">SOURCES</span>
+        <span class="meta-val" id="metaSources">—</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-key">ON-CHAIN</span>
+        <span class="meta-val" id="metaOnChain">—</span>
+      </div>
+    </div>
+
+    <div class="report-content" id="reportContent">
+      <div class="report-placeholder">
+        <div class="placeholder-icon">◈</div>
+        <div class="placeholder-text">Research report will appear here after agent completes</div>
+        <div class="placeholder-sub">Powered by Gemini AI · Verified on Avalanche Fuji</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── BOTTOM STATUS BAR ──────────────────────────────────── -->
+<footer class="hud-footer">
+  <div class="footer-left">
+    <span class="mono">AGENTMESH v1.0.0-hackathon</span>
+    <span class="sep">|</span>
+    <span>Daksh 2026 · Vibe-A-Thon</span>
+    <span class="sep">|</span>
+    <span class="mono">Chain: Avalanche Fuji (43113)</span>
+  </div>
+  <div class="footer-center" id="footerStatus">
+    <span class="dot pulse green"></span>
+    <span>SYSTEM NOMINAL</span>
+  </div>
+  <div class="footer-right">
+    <a href="https://testnet.snowtrace.io" target="_blank" class="footer-link">SNOWTRACE ↗</a>
+    <span class="sep">|</span>
+    <a href="#" onclick="window.open('/health')" class="footer-link">HEALTH ↗</a>
+  </div>
+</footer>
+
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loadingOverlay" style="display:none">
+  <div class="loading-core">
+    <div class="loading-ring r1"></div>
+    <div class="loading-ring r2"></div>
+    <div class="loading-ring r3"></div>
+    <div class="loading-text" id="loadingText">INITIALIZING AGENT MESH</div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
