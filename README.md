@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://media.tenor.com/qdrmRHxeLKmAAAAC/iron-man-tony-stark.gif" alt="AgentMesh Suit Up" width="100%" style="border-radius: 12px; border: 2px solid #00e5ff; box-shadow: 0 0 20px rgba(0,229,255,0.4);" />
+  <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmxqdDdzYWU2NHF4Z3JidWJ0OXR5ZjRhaWo5MDh2emh1a2luaGw2NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lXo8uSnIkaB9e/giphy.gif" alt="AgentMesh Introduction" width="100%" style="border-radius: 12px; border: 2px solid #00e5ff; box-shadow: 0 0 20px rgba(0,229,255,0.4);" />
   
   <h1 style="color: #00e5ff; font-family: monospace; font-size: 3em; margin-bottom: 0;">⚡ AgentMesh ⚡</h1>
   <p style="font-size: 1.2em; color: #a0aec0; letter-spacing: 2px;">THE AUTONOMOUS x402 RESEARCH NETWORK</p>
