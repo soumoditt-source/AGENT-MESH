@@ -4,6 +4,12 @@
   <h1 style="color: #00e5ff; font-family: monospace; font-size: 3em; margin-bottom: 0;">⚡ AgentMesh ⚡</h1>
   <p style="font-size: 1.2em; color: #a0aec0; letter-spacing: 2px;">THE AUTONOMOUS x402 RESEARCH NETWORK</p>
   
+  <p style="margin-top: 10px;">
+    <a href="https://agent-mesh-seven.vercel.app/" target="_blank">
+      <img src="https://img.shields.io/badge/Live_Demo-Vercel-black?style=for-the-badge&logo=vercel&logoColor=white&labelColor=00e5ff" alt="Live Demo" />
+    </a>
+  </p>
+
   <p>
     <b>Vibe-A-Thon @ Daksh 2026 · Heritage Campus</b><br/>
     <i>Built by Team <b>FULLSTACK SHINOBI</b></i>
