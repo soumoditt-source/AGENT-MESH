@@ -18,6 +18,9 @@ export async function POST(request) {
       return NextResponse.json({ error: 'topic is required' }, { status: 400 })
     }
 
+    // Extract origin for serverless fetch capability
+    const { origin } = new URL(request.url);
+
     // Dynamic import of the ESM agent runner (works in Node.js runtime)
     const { executeResearch } = await import('../../../lib/agentRunner.js')
 
@@ -27,6 +30,7 @@ export async function POST(request) {
       priority:   priority || 'Medium',
       maxRetries: retries !== undefined ? Math.min(Math.max(1, parseInt(retries, 10)), 5) : 2,
       bypassCode: bypassCode || '',
+      origin:     origin, // Pass the current host origin
       log: (msg) => {
         logs.push(msg)
         console.log(`[AgentMesh] ${msg}`)

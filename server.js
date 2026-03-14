@@ -60,54 +60,23 @@ function requirePayment(req, res, next) {
   next();
 }
 
+import { 
+  fetchNews, 
+  fetchAcademic, 
+  fetchSocial, 
+  fetchTech, 
+  fetchWiki, 
+  fetchCrypto, 
+  fetchQuotes,
+  fetchMeteo
+} from './lib/researchProviders.js';
+
 // ─── /research/news — NewsAPI with Guardian fallback ──────────────────────
 app.get('/research/news', requirePayment, async (req, res) => {
   const q = req.query.q || 'technology';
   try {
-    if (process.env.NEWS_API_KEY) {
-      const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&pageSize=5&sortBy=publishedAt&language=en&apiKey=${process.env.NEWS_API_KEY}`;
-      const r = await fetch(url);
-      const data = await r.json();
-      if (data.status === 'ok' && data.articles?.length > 0) {
-        const articles = data.articles.map(a => ({
-          title: a.title,
-          description: a.description,
-          source: a.source?.name,
-          publishedAt: a.publishedAt,
-          url: a.url
-        }));
-        return res.json({ source: 'NewsAPI', query: q, results: articles });
-      }
-    }
-    // Fallback: Guardian API (hardcoded requested key for hackathon)
-    const guardianKey = process.env.GUARDIAN_API_KEY || '53e3f46c-4277-46c6-ae33-600cf2da841f';
-    if (guardianKey) {
-      const url = `https://content.guardianapis.com/search?q=${encodeURIComponent(q)}&show-fields=trailText&page-size=5&api-key=${guardianKey}`;
-      const r = await fetch(url);
-      const data = await r.json();
-      if (data.response?.results?.length > 0) {
-        const results = data.response.results.map(a => ({
-          title: a.webTitle,
-          description: a.fields?.trailText,
-          source: 'The Guardian',
-          publishedAt: a.webPublicationDate,
-          url: a.webUrl
-        }));
-        return res.json({ source: 'Guardian', query: q, results });
-      }
-    }
-    // Last fallback: HackerNews
-    const url = `https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(q)}&hitsPerPage=5&tags=story`;
-    const r = await fetch(url);
-    const data = await r.json();
-    const results = (data.hits || []).map(h => ({
-      title: h.title,
-      description: `${h.points} points · by ${h.author}`,
-      source: 'HackerNews',
-      publishedAt: h.created_at,
-      url: h.url || `https://news.ycombinator.com/item?id=${h.objectID}`
-    }));
-    return res.json({ source: 'HackerNews', query: q, results });
+    const data = await fetchNews(q, process.env.NEWS_API_KEY, process.env.GUARDIAN_API_KEY);
+    res.json({ ...data, query: q });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -117,22 +86,8 @@ app.get('/research/news', requirePayment, async (req, res) => {
 app.get('/research/academic', requirePayment, async (req, res) => {
   const q = req.query.q || 'artificial intelligence';
   try {
-    const url = `https://export.arxiv.org/api/query?search_query=all:${encodeURIComponent(q)}&start=0&max_results=5`;
-    const r = await fetch(url);
-    const xml = await r.text();
-
-    const entries = [];
-    const entryRegex = /<entry>([\s\S]*?)<\/entry>/g;
-    let match;
-    while ((match = entryRegex.exec(xml)) !== null) {
-      const entry = match[1];
-      const title = (/<title>([\s\S]*?)<\/title>/.exec(entry)?.[1] || '').replace(/\n/g, ' ').trim();
-      const summary = (/<summary>([\s\S]*?)<\/summary>/.exec(entry)?.[1] || '').replace(/\n/g, ' ').trim().slice(0, 250);
-      const id = (/<id>(http[^<]+)<\/id>/.exec(entry)?.[1] || '').trim();
-      if (title) entries.push({ title, summary, url: id });
-    }
-
-    res.json({ source: 'arXiv', query: q, results: entries });
+    const data = await fetchAcademic(q);
+    res.json({ ...data, query: q });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -142,17 +97,8 @@ app.get('/research/academic', requirePayment, async (req, res) => {
 app.get('/research/social', requirePayment, async (req, res) => {
   const q = req.query.q || 'technology';
   try {
-    const url = `https://www.reddit.com/search.json?q=${encodeURIComponent(q)}&sort=hot&limit=5`;
-    const r = await fetch(url, { headers: { 'User-Agent': 'AgentMesh/1.0 hackathon-bot' } });
-    const data = await r.json();
-    const posts = (data.data?.children || []).map(p => ({
-      title: p.data.title,
-      score: p.data.score,
-      comments: p.data.num_comments,
-      subreddit: p.data.subreddit,
-      url: `https://reddit.com${p.data.permalink}`
-    }));
-    res.json({ source: 'Reddit', query: q, results: posts });
+    const data = await fetchSocial(q);
+    res.json({ ...data, query: q });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -162,17 +108,8 @@ app.get('/research/social', requirePayment, async (req, res) => {
 app.get('/research/tech', requirePayment, async (req, res) => {
   const q = req.query.q || 'ai';
   try {
-    const url = `https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(q)}&hitsPerPage=5&tags=story`;
-    const r = await fetch(url);
-    const data = await r.json();
-    const hits = (data.hits || []).map(h => ({
-      title: h.title,
-      points: h.points,
-      comments: h.num_comments,
-      url: h.url || `https://news.ycombinator.com/item?id=${h.objectID}`,
-      author: h.author
-    }));
-    res.json({ source: 'HackerNews', query: q, results: hits });
+    const data = await fetchTech(q);
+    res.json({ ...data, query: q });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -182,32 +119,8 @@ app.get('/research/tech', requirePayment, async (req, res) => {
 app.get('/research/wiki', requirePayment, async (req, res) => {
   const q = req.query.q || 'artificial intelligence';
   try {
-    // 1. Search for potential pages
-    const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(q)}&format=json&origin=*`;
-    const searchRes = await fetch(searchUrl);
-    const searchData = await searchRes.json();
-    const searchResults = searchData.query?.search || [];
-
-    if (searchResults.length === 0) {
-      return res.json({ source: 'Wikipedia', query: q, results: [{ title: q, summary: 'No relevant Wikipedia pages found.', url: '' }] });
-    }
-
-    // 2. Fetch summaries for top 3 results
-    const results = [];
-    for (const item of searchResults.slice(0, 3)) {
-      const formatted = item.title.replace(/\s+/g, '_');
-      const summaryUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(formatted)}`;
-      const summaryRes = await fetch(summaryUrl, { headers: { 'User-Agent': 'AgentMesh/1.0' } });
-      if (summaryRes.ok) {
-        const data = await summaryRes.json();
-        results.push({
-          title: data.title,
-          summary: data.extract,
-          url: data.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${formatted}`
-        });
-      }
-    }
-    res.json({ source: 'Wikipedia', query: q, results });
+    const data = await fetchWiki(q);
+    res.json({ ...data, query: q });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -216,17 +129,8 @@ app.get('/research/wiki', requirePayment, async (req, res) => {
 // ─── /research/crypto — CoinCap (CoinGecko Alternative) ───────────────────
 app.get('/research/crypto', requirePayment, async (req, res) => {
   try {
-    const url = 'https://api.coincap.io/v2/assets?limit=10';
-    const r = await fetch(url);
-    const data = await r.json();
-    const results = (data.data || []).map(coin => ({
-      name: coin.name,
-      symbol: coin.symbol,
-      priceUsd: `$${Number.parseFloat(coin.priceUsd).toFixed(2)}`,
-      marketCap: `$${Number.parseFloat(coin.marketCapUsd).toFixed(0)}`,
-      change24h: `${Number.parseFloat(coin.changePercent24Hr).toFixed(2)}%`
-    }));
-    res.json({ source: 'CoinCap', query: 'crypto assets', results });
+    const data = await fetchCrypto();
+    res.json({ ...data, query: 'crypto assets' });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -235,15 +139,19 @@ app.get('/research/crypto', requirePayment, async (req, res) => {
 // ─── /research/quotes — Zen Quotes API ────────────────────────────────────
 app.get('/research/quotes', requirePayment, async (req, res) => {
   try {
-    const url = 'https://zenquotes.io/api/random';
-    const r = await fetch(url);
-    const data = await r.json();
-    const results = data.map(q => ({
-      quote: q.q,
-      author: q.a,
-      html: q.h
-    }));
-    res.json({ source: 'ZenQuotes', query: 'inspiration', results });
+    const data = await fetchQuotes();
+    res.json({ ...data, query: 'inspiration' });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// ─── /research/meteo — Weather & Location Metrics ──────────────────────────
+app.get('/research/meteo', requirePayment, async (req, res) => {
+  const q = req.query.q || 'delhi';
+  try {
+    const data = await fetchMeteo(q);
+    res.json({ ...data, query: q });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
