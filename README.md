@@ -48,7 +48,7 @@ AgentMesh operates on a state-of-the-art multi-agent orchestration pattern integ
 
 ### How it Flows:
 1. **The Catalyst (User Query):** You request deep-dive intelligence (e.g., "Future of Agentic AI 2026").
-2. **The Orchestrator (Gemini):** The Master Agent breaks your request down into 3 targeted sub-queries.
+2. **The Orchestrator (Multi-LLM):** The Master Agent breaks your request into 3 sub-queries using **Gemini 3.1 Pro** (High Reasoning). If Gemini is down, it automatically fails over to **OpenRouter** or **Hugging Face**.
 3. **The x402 Paywalls (Sub-Agents):** 
    - Agents hit premium endpoints (`/research/news`, `/research/crypto`, etc.).
    - The Gateway responds: `402 Payment Required`.
@@ -57,7 +57,7 @@ AgentMesh operates on a state-of-the-art multi-agent orchestration pattern integ
    - It pays `0.1 USDC` to the API facilitator on Avalanche Fuji.
    - It retries the request with an `X-Payment-Proof` header representing the confirmed `txHash`.
    - *Demo Bypass:* Alternatively uses standard `X-Bypass-Code: DAKSH_FULLSTACKSHINOBI` for free verification.
-5. **The Synthesis:** Data is ingested, collated, and synthesized into a master intelligence report by Gemini.
+5. **The Synthesis:** Data is ingested, collated, and synthesized into a master intelligence report with a multi-layered failover chain ensuring 100% uptime.
 6. **The Chronicle (ERC-8004):** The agent registers its creation and existence on the blockchain via `AgentRegistry.sol`.
 
 ---
