@@ -493,40 +493,47 @@ export default function AgentMeshPage() {
         {/* Nav */}
         <nav
           className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-500 ${isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}
-          style={{ borderColor: `rgba(0,200,255,${0.1 + navBackground * 0.2})`, backgroundColor: `rgba(8,20,35,${navBackground})`, backdropFilter: `blur(${12 + navBackground * 8}px)` }}
+          style={{ 
+            borderColor: `rgba(0,229,255,${0.1 + navBackground * 0.2})`, 
+            backgroundColor: `rgba(8,20,35,${navBackground})`, 
+            backdropFilter: `blur(${12 + navBackground * 8}px)` 
+          }}
         >
-            <div className="flex items-center gap-3 relative z-10">
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-400/40 bg-cyan-400/10 overflow-hidden"
-                style={{ boxShadow: `0 0 ${20 + scrollY * 0.02}px rgba(0,200,255,${0.2 + scrollY * 0.0002})`, transform: `rotate(${scrollY * 0.05}deg)` }}>
-                <Zap className="h-5 w-5 text-cyan-400 relative z-10" />
+          <div className="max-w-[1800px] mx-auto px-6 h-20 grid grid-cols-3 items-center">
+            {/* Logo - Left */}
+            <div className="flex items-center gap-3">
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-400/40 bg-cyan-400/10 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+                <Zap className="h-5 w-5 text-cyan-400" />
               </div>
-              <span className="font-mono text-xl font-bold text-foreground tracking-tight">AgentMesh</span>
+              <span className="font-mono text-xl font-bold text-foreground tracking-tight">AGENT<span className="text-[#00e5ff]">MESH</span></span>
             </div>
 
-            <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-10">
-              <a href="#features" className="font-mono text-sm tracking-widest text-muted-foreground hover:text-cyan-400 transition-all hover:scale-110">FEATURES</a>
-              <a href="#demo" className="font-mono text-sm tracking-widest text-muted-foreground hover:text-cyan-400 transition-all hover:scale-110">PLATFORM</a>
-              <a href="https://agent-mesh-seven.vercel.app/" target="_blank" rel="noopener noreferrer" className="font-mono text-sm tracking-widest text-muted-foreground hover:text-cyan-400 transition-all hover:scale-110">DOCS</a>
+            {/* Navigation - Center */}
+            <div className="hidden md:flex items-center justify-center gap-12">
+              <a href="#features" className="font-mono text-xs tracking-[0.3em] text-cyan-100/60 hover:text-[#00e5ff] transition-all hover:scale-105 active:scale-95">FEATURES</a>
+              <a href="#demo" className="font-mono text-xs tracking-[0.3em] text-cyan-100/60 hover:text-[#00e5ff] transition-all hover:scale-105 active:scale-95">PLATFORM</a>
+              <a href="https://agent-mesh-seven.vercel.app/" target="_blank" rel="noopener noreferrer" className="font-mono text-xs tracking-[0.3em] text-cyan-100/60 hover:text-[#00e5ff] transition-all hover:scale-105 active:scale-95">DOCS</a>
             </div>
 
-            <div className="flex items-center gap-3 relative z-10">
+            {/* Actions - Right */}
+            <div className="flex items-center justify-end gap-3">
               <Button 
                 variant="ghost" 
                 size="sm" 
-                className="font-mono text-muted-foreground hover:text-foreground"
+                className="font-mono text-muted-foreground hover:text-foreground border border-transparent hover:border-cyan-400/30"
                 onClick={() => window.open('https://github.com/soumoditt-source/AGENT-MESH', '_blank')}
               >
                 <Github className="h-4 w-4 mr-2" />
-                <span className="hidden sm:inline">GitHub</span>
+                <span className="hidden sm:inline">SOURCE</span>
               </Button>
               <Button
                 size="sm"
                 onClick={openModal}
-                className="font-mono bg-cyan-500 text-background hover:bg-cyan-400"
-                style={{ boxShadow: `0 0 ${25 + Math.sin(scrollY * 0.01) * 10}px rgba(0,200,255,0.4)` }}
+                className="font-mono bg-[#00e5ff] text-background hover:bg-cyan-400 font-bold"
+                style={{ boxShadow: `0 0 ${25 + Math.sin(scrollY * 0.01) * 10}px rgba(0,229,255,0.4)` }}
               >
-                <Play className="h-3.5 w-3.5 mr-1.5" />
-                Run Agent
+                <Play className="h-3.5 w-3.5 mr-1.5 fill-current" />
+                RUN AGENT
               </Button>
             </div>
           </div>

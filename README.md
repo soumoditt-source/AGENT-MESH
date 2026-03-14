@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://i.giphy.com/xTiTnzg2zE6q9vJ1io.gif" alt="AgentMesh Arc Reactor" width="100%" style="border-radius: 12px; border: 2px solid #00e5ff; box-shadow: 0 0 20px rgba(0,229,255,0.4);" />
+  <img src="https://media.giphy.com/media/LHZyixOnHwDDy/giphy.gif" alt="AgentMesh Arc Reactor" width="100%" style="border-radius: 12px; border: 2px solid #00e5ff; box-shadow: 0 0 20px rgba(0,229,255,0.4);" />
   
   <h1 style="color: #00e5ff; font-family: monospace; font-size: 3em; margin-bottom: 0;">⚡ AgentMesh ⚡</h1>
   <p style="font-size: 1.2em; color: #a0aec0; letter-spacing: 2px;">THE AUTONOMOUS x402 RESEARCH NETWORK</p>
@@ -40,11 +40,7 @@ The core of AgentMesh is its **x402 Payment Engine* (The Arc Reactor). When an A
 
 AgentMesh operates on a state-of-the-art multi-agent orchestration pattern integrated intimately with HTTP 402 payment rails.
 
-<br>
-<div align="center">
-  <img src="https://i.giphy.com/26tn33aiTi1jIGs4E.gif" alt="Data Flow" width="80%" style="border-radius: 8px; border: 1px solid #333;" />
-</div>
-<br>
+  <img src="https://media.giphy.com/media/3o7TKrE37v7y23S0o/giphy.gif" alt="Data Flow" width="80%" style="border-radius: 8px; border: 1px solid #333;" />
 
 ### How it Flows:
 1. **The Catalyst (User Query):** You request deep-dive intelligence (e.g., "Future of Agentic AI 2026").
@@ -110,7 +106,7 @@ Navigate to `http://localhost:3000` to access the Command Center. Use referral c
 ---
 
 <div align="center">
-  <img src="https://i.giphy.com/l0Iyl55kTeh71nTXy.gif" alt="Victory" width="100%" style="border-radius: 12px; opacity: 0.8;" />
+  <img src="https://media.giphy.com/media/l0Iyl55kTeh71nTXy/giphy.gif" alt="Victory" width="100%" style="border-radius: 12px; opacity: 0.8;" />
   <br><br>
   <h3>Team FULLSTACK SHINOBI</h3>
   <p><b>Leader:</b> SOUMODITYA DAS | <b>Advisor:</b> SOUNAK KUMAR MONDAL | <b>Presenter:</b> RAJASHRI CHAUDHURI</p>
