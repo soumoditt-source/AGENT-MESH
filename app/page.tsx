@@ -72,6 +72,7 @@ function AgentModal({
   const [step, setStep] = useState(-1)
   const [result, setResult] = useState<AgentResult | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [synthesizing, setSynthesizing] = useState(false);
   const [logs, setLogs] = useState<string[]>([])
   const logRef = useRef<HTMLDivElement>(null)
 
@@ -84,7 +85,9 @@ function AgentModal({
     "Payment confirmed — retrying with X-Payment-Proof…",
     "Sub-Agent 2: GET /research/academic — 402 → pay → retry…",
     "Sub-Agent 3: GET /research/social — 402 → pay → retry…",
-    "Gemini synthesizing research report…",
+    "Gemini processing raw data…",
+    "Synthesizing research report...",
+    "Finalizing report and registering on-chain…",
     "Registering on ERC-8004 (AgentRegistry.sol)…",
     "Saving report to output/…",
   ]
@@ -102,6 +105,7 @@ function AgentModal({
     setResult(null)
     setLogs([])
     setStep(0)
+    setSynthesizing(false)
 
     onStateChange({ phase: 'running', payments: 0, usdc: 0, sources: [], elapsed: '', txList: [], topic: topic.trim() })
 
@@ -138,7 +142,12 @@ function AgentModal({
       if (r.logs?.length) {
         r.logs.forEach(l => addLog(`✓ ${l}`))
       }
-      addLog(`✅ Research complete! ${r.payments} payments, ${r.sources?.length} sources in ${r.elapsed}s`)
+      
+      if (r.report) {
+        addLog(`✅ Research complete! ${r.payments} payments, ${r.sources?.length} sources in ${r.elapsed}s`)
+      } else {
+        addLog(`⚠️ Research completed, but no report generated.`)
+      }
 
       onStateChange({
         phase:    'done',
@@ -158,6 +167,7 @@ function AgentModal({
       onStateChange({ phase: 'error', payments: 0, usdc: 0, sources: [], elapsed: '', txList: [], error: errMsg })
     } finally {
       setRunning(false)
+      setSynthesizing(false)
     }
   }
 
@@ -415,7 +425,13 @@ function AgentModal({
                   className="bg-background/60 border border-cyan-400/15 rounded-lg p-4 max-h-56 overflow-y-auto"
                   style={{ scrollbarWidth: 'thin' }}
                 >
-                  <MdText text={result.report || ''} />
+                  {result.report ? (
+                    <MdText text={result.report || ''} />
+                  ) : (
+                    <div className="text-muted-foreground text-sm font-mono">
+                      No report was generated. This might indicate an issue with the AI synthesis step or data retrieval.
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -434,6 +450,7 @@ function AgentModal({
                     a.download = `agentmesh_${Date.now()}.md`; a.click()
                   }}
                   className="flex-1 font-mono bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 hover:bg-cyan-500/30"
+                  disabled={!result.report}
                 >
                   Download Report
                 </Button>
