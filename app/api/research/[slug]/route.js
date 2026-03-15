@@ -74,6 +74,7 @@ export async function GET(request, { params }) {
       case 'crypto':
         data = await fetchCrypto();
         break;
+      case 'zenquotes':
       case 'quotes':
         data = await fetchQuotes();
         break;
