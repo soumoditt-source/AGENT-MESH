@@ -586,9 +586,21 @@ export default function AgentMeshPage() {
                   style={{ background: 'radial-gradient(circle at center, rgba(0,229,255,0.15) 0%, transparent 70%)', backgroundImage: 'radial-gradient(rgba(0,229,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
                 {/* Capability Matrix - Top Center (Fills Empty Middle) */}
-                <div className={`absolute top-[5%] left-1/2 -translate-x-1/2 z-10 hidden md:block transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0 -translate-y-10'}`}
+                <div className={`absolute top-[2%] left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-4 transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0 -translate-y-10'}`}
                   style={{ transform: `translateX(-50%) translateZ(100px) translateY(${scrollY * 0.05}px)`, opacity: heroOpacity }}>
-                  <div className="glass-panel p-4 flex gap-6 items-center rounded-2xl border-cyan-400/20">
+                  
+                  {/* Neural HUD Activity Grid */}
+                  <div className="flex flex-col items-center gap-2 mb-2">
+                    <div className="grid grid-cols-12 gap-1 p-2 bg-cyan-400/5 border border-cyan-400/10 rounded backdrop-blur-[2px]">
+                      {Array.from({ length: 48 }).map((_, i) => (
+                        <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${Math.random() > 0.8 ? 'bg-cyan-400 shadow-[0_0_5px_rgba(0,229,255,0.8)]' : 'bg-cyan-900/40'}`} 
+                             style={{ animationDelay: `${i * 50}ms`, transitionDelay: `${i * 10}ms` }} />
+                      ))}
+                    </div>
+                    <div className="font-mono text-[8px] text-cyan-400/40 tracking-[0.4em] uppercase">Neural Mesh Synchronized</div>
+                  </div>
+
+                  <div className="glass-panel p-4 flex gap-6 items-center rounded-2xl border-cyan-400/20 shadow-[0_0_40px_rgba(0,229,255,0.1)]">
                     <div className="flex flex-col items-center">
                       <span className="font-mono text-[10px] text-cyan-400/60 mb-1">LATENCY</span>
                       <span className="font-mono text-sm text-cyan-300">14ms</span>
@@ -607,6 +619,14 @@ export default function AgentMeshPage() {
                     <div className="flex flex-col items-center">
                       <span className="font-mono text-[10px] text-cyan-400/60 mb-1">UPTIME</span>
                       <span className="font-mono text-sm text-cyan-300">∞</span>
+                    </div>
+                  </div>
+
+                  {/* Operational Status Ticker */}
+                  <div className="mt-2 flex items-center gap-3 px-4 py-1.5 bg-background/40 border border-cyan-900/30 rounded-full backdrop-blur-md overflow-hidden max-w-[300px]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                    <div className="font-mono text-[9px] text-cyan-100/70 whitespace-nowrap animate-marquee">
+                      SYSTEM STATUS: OPTIMAL // X402 GATEWAY READY // RESEARCH BRANCHES: 8 // ERC-8004 REGISTRY SYNCED //
                     </div>
                   </div>
                 </div>
