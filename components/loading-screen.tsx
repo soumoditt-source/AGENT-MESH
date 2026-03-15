@@ -6,6 +6,11 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0)
   const [phase, setPhase] = useState<'loading' | 'initializing' | 'complete'>('loading')
   const [glitchText, setGlitchText] = useState('AGENTMESH')
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   useEffect(() => {
     const glitchChars = '!@#$%^&*()_+-=[]{}|;:,.<>?0123456789'
@@ -163,23 +168,25 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       </div>
 
       {/* Binary rain effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute font-mono text-xs text-cyan-400 whitespace-nowrap"
-            style={{
-              left: `${i * 5}%`,
-              top: '-100%',
-              animation: `fall ${3 + Math.random() * 5}s linear infinite ${Math.random() * 3}s`
-            }}
-          >
-            {[...Array(30)].map((_, j) => (
-              <div key={j}>{Math.random() > 0.5 ? '1' : '0'}</div>
-            ))}
-          </div>
-        ))}
-      </div>
+      {isMounted && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute font-mono text-xs text-cyan-400 whitespace-nowrap"
+              style={{
+                left: `${i * 5}%`,
+                top: '-100%',
+                animation: `fall ${3 + Math.random() * 5}s linear infinite ${Math.random() * 3}s`
+              }}
+            >
+              {[...Array(30)].map((_, j) => (
+                <div key={j}>{Math.random() > 0.5 ? '1' : '0'}</div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
 
       <style jsx>{`
         @keyframes spin {

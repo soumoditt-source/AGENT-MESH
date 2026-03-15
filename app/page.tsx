@@ -10,7 +10,8 @@ import { DynamicBackground } from "@/components/dynamic-background"
 import { ScrollArcReactor } from "@/components/scroll-arc-reactor"
 import { ScrollSections } from "@/components/scroll-sections"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Github, Play, Zap, ChevronDown, X, Loader2, CheckCircle, AlertCircle, ExternalLink } from "lucide-react"
+import { ArrowRight, Github, Play, Zap, ChevronDown, X, Loader2, CheckCircle, AlertCircle, ExternalLink, ShieldCheck } from "lucide-react"
+import { HUDTerminal } from "@/components/hud-terminal"
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface AgentResult {
@@ -160,16 +161,16 @@ function AgentModal({
   }
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-      style={{ background: 'rgba(5,12,25,0.92)', backdropFilter: 'blur(12px)' }}>
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-background/90 backdrop-blur-md" onClick={onClose} />
       <div
-        className="relative w-full max-w-3xl max-h-[90vh] rounded-xl overflow-hidden flex flex-col"
+        className="relative w-full max-w-4xl max-h-[90vh] rounded-xl overflow-hidden flex flex-col hud-panel"
         style={{
-          background: 'linear-gradient(135deg, rgba(8,20,40,0.98) 0%, rgba(5,15,30,0.98) 100%)',
-          border: '1px solid rgba(0,200,255,0.25)',
           boxShadow: '0 0 60px rgba(0,200,255,0.2), 0 0 120px rgba(0,200,255,0.08)',
         }}
       >
+        {/* Scanlines inside modal too */}
+        <div className="scanlines opacity-40" />
         {/* Top stripe */}
         <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
 
@@ -243,17 +244,30 @@ function AgentModal({
 
               <div>
                 <label className="font-mono text-xs text-cyan-400/70 tracking-widest uppercase mb-2 block flex items-center justify-between">
-                  <span>Referral Code (Optional)</span>
-                  <span className="text-[9px] text-yellow-400/70">BYPASS 402 PAYMENTS</span>
+                  <span>DAKSH BYPASS / REFERRAL</span>
+                  {bypassCode.trim().toUpperCase() === 'DAKSH_FULLSTACKSHINOBI' ? (
+                    <span className="text-[9px] text-yellow-400 animate-pulse font-bold tracking-tighter">PREMIUM ACCESS UNLOCKED</span>
+                  ) : (
+                    <span className="text-[9px] text-cyan-400/40">BYPASS 402 PAYMENTS</span>
+                  )}
                 </label>
-                <input
-                  type="text"
-                  value={bypassCode}
-                  onChange={e => setBypassCode(e.target.value)}
-                  placeholder="e.g. DAKSH_FULLSTACKSHINOBI"
-                  disabled={running}
-                  className="w-full bg-cyan-400/5 border border-cyan-400/20 rounded-lg px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-yellow-400/20 transition-all disabled:opacity-50"
-                />
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={bypassCode}
+                    onChange={e => setBypassCode(e.target.value)}
+                    placeholder="ENTER DAKSH_FULLSTACKSHINOBI"
+                    disabled={running}
+                    className={`w-full bg-cyan-400/5 border rounded-lg px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground/30 outline-none transition-all disabled:opacity-50 ${
+                      bypassCode.trim().toUpperCase() === 'DAKSH_FULLSTACKSHINOBI' 
+                        ? 'border-yellow-400/60 shadow-[0_0_15px_rgba(234,179,8,0.2)] text-yellow-400' 
+                        : 'border-cyan-400/20 focus:border-cyan-400/60'
+                    }`}
+                  />
+                  {bypassCode.trim().toUpperCase() === 'DAKSH_FULLSTACKSHINOBI' && (
+                    <ShieldCheck className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-yellow-400" />
+                  )}
+                </div>
               </div>
 
               <Button
@@ -273,25 +287,24 @@ function AgentModal({
 
           {/* Live terminal log */}
           {logs.length > 0 && (
-            <div>
-              <div className="font-mono text-xs text-cyan-400/60 tracking-widest uppercase mb-2 flex items-center gap-2">
-                Agent Log
-                {running && <span className="text-yellow-400 animate-pulse">● LIVE</span>}
+            <div className="space-y-3">
+              <div className="font-mono text-xs text-cyan-400/60 tracking-widest uppercase flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  Agent Log
+                  {running && <span className="text-yellow-400 animate-pulse">● LIVE</span>}
+                </div>
+                {bypassCode.trim().toUpperCase() === 'DAKSH_FULLSTACKSHINOBI' && (
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-yellow-400/10 border border-yellow-400/30 text-yellow-400">
+                    <ShieldCheck className="h-3 w-3" />
+                    <span className="text-[9px]">PREMIUM BYPASS ACTIVE</span>
+                  </div>
+                )}
               </div>
-              <div
-                ref={logRef}
-                className="bg-background/60 border border-cyan-400/15 rounded-lg p-3 h-40 overflow-y-auto space-y-1"
-              >
-                {logs.map((log, i) => (
-                  <div key={i} className={`font-mono text-xs leading-relaxed ${
-                    log.includes('❌') ? 'text-red-400' :
-                    log.includes('✅') || log.includes('✓') ? 'text-green-400' :
-                    log.includes('402') || log.includes('pay') ? 'text-yellow-400' :
-                    'text-cyan-300/80'
-                  }`}>{log}</div>
-                ))}
-                {running && <div className="font-mono text-xs text-cyan-400 animate-pulse">_</div>}
-              </div>
+              
+              <HUDTerminal 
+                agentLogs={logs} 
+                liveTxList={result?.paymentList || []}
+              />
             </div>
           )}
 
@@ -332,12 +345,16 @@ function AgentModal({
               <div className="grid grid-cols-4 gap-3">
                 {[
                   { label: 'Payments', val: String(result.payments), color: 'text-cyan-300' },
-                  { label: 'USDC Spent', val: `$${(result.payments * 0.1).toFixed(1)}`, color: 'text-green-400' },
+                  { 
+                    label: 'USDC Spent', 
+                    val: bypassCode.trim().toUpperCase() === 'DAKSH_FULLSTACKSHINOBI' ? 'PREMIUM' : `$${(result.payments * 0.1).toFixed(1)}`, 
+                    color: bypassCode.trim().toUpperCase() === 'DAKSH_FULLSTACKSHINOBI' ? 'text-yellow-400' : 'text-green-400' 
+                  },
                   { label: 'Sources', val: String(result.sources?.length || 0), color: 'text-yellow-400' },
                   { label: 'Time', val: result.elapsed ? result.elapsed + 's' : '—', color: 'text-cyan-300' },
                 ].map((s, i) => (
-                  <div key={i} className="text-center bg-cyan-400/5 border border-cyan-400/15 rounded-lg p-3">
-                    <div className={`font-mono text-xl font-bold ${s.color}`}>{s.val}</div>
+                  <div key={i} className="text-center bg-cyan-400/5 border border-cyan-400/15 rounded-lg p-3 shadow-[0_0_15px_rgba(0,180,255,0.05)]">
+                    <div className={`font-mono text-xl font-bold ${s.color} translate-z-10 whitespace-nowrap`}>{s.val}</div>
                     <div className="font-mono text-[9px] text-muted-foreground uppercase tracking-wider mt-1">{s.label}</div>
                   </div>
                 ))}
@@ -472,7 +489,11 @@ export default function AgentMeshPage() {
         />
       )}
 
-      <main className="min-h-[500vh] bg-background relative">
+      <main className="min-h-[500vh] bg-background relative overflow-x-hidden">
+        {/* Global HUD Overlay Effects */}
+        <div className="scanlines" />
+        <div className="hud-grid-bg" />
+        
         <DynamicBackground scrollY={scrollY} maxScroll={maxScroll} />
 
         <ScrollArcReactor position="left"  scrollY={scrollY} index={0} />

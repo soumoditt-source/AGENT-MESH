@@ -6,6 +6,20 @@
 :root {
   --background: oklch(0.08 0.005 240);
   --foreground: oklch(0.95 0 0);
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 5, 10, 20;
+  --background-end-rgb: 0, 0, 0;
+
+  /* JARVIS HUD Tokens */
+  --hud-blue: #00b4ff;
+  --hud-blue-dim: #005f88;
+  --hud-gold: #ffc857;
+  --hud-gold-dim: #7a5e00;
+  --hud-green: #00ff9f;
+  --hud-red: #ff4444;
+  --hud-border: rgba(0, 180, 255, 0.18);
+  --hud-panel-bg: rgba(8, 16, 32, 0.85);
+  --hud-glow-blue: 0 0 12px rgba(0, 180, 255, 0.7);
   --card: oklch(0.12 0.008 240);
   --card-foreground: oklch(0.95 0 0);
   --popover: oklch(0.10 0.006 240);
@@ -204,11 +218,11 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { 
+  0%, 100% {
     box-shadow: 0 0 20px var(--glow), 0 0 40px var(--glow-dim);
     opacity: 1;
   }
-  50% { 
+  50% {
     box-shadow: 0 0 30px var(--glow), 0 0 60px var(--glow), 0 0 100px var(--glow-dim);
     opacity: 0.9;
   }
@@ -235,19 +249,19 @@
 }
 
 @keyframes particle-float {
-  0%, 100% { 
+  0%, 100% {
     transform: translateY(0) translateX(0) scale(1);
     opacity: 0.5;
   }
-  25% { 
+  25% {
     transform: translateY(-30px) translateX(10px) scale(1.2);
     opacity: 1;
   }
-  50% { 
+  50% {
     transform: translateY(-50px) translateX(-5px) scale(0.8);
     opacity: 0.7;
   }
-  75% { 
+  75% {
     transform: translateY(-20px) translateX(-15px) scale(1.1);
     opacity: 0.9;
   }
@@ -320,13 +334,88 @@
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--glow), transparent);
 }
+/* ── HUD BACKGROUND EFFECTS ──────────────────────────────── */
+.scanlines {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  animation: scanmove 12s linear infinite;
+}
+@keyframes scanmove {
+  0%  { background-position: 0 0; }
+  100%{ background-position: 0 50px; }
+}
+
+.hud-grid-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,180,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,180,255,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* ── ARC REACTOR ─────────────────────────────────────────── */
+.arc-reactor {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--hud-blue);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  box-shadow: var(--hud-glow-blue), inset 0 0 12px rgba(0,180,255,0.3);
+  animation: reactor-spin 4s linear infinite;
+}
+@keyframes reactor-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.arc-inner {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #00d4ff 0%, #005f88 60%, #000 100%);
+  box-shadow: 0 0 16px #00b4ff, 0 0 32px rgba(0,180,255,0.4);
+  animation: reactor-pulse 1.5s ease-in-out infinite alternate;
+}
+@keyframes reactor-pulse {
+  from { box-shadow: 0 0 8px #00b4ff; }
+  to   { box-shadow: 0 0 24px #00b4ff, 0 0 48px rgba(0,180,255,0.5); }
+}
+.arc-pulse {
+  position: absolute; inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,180,255,0.3);
+  animation: arc-expand 2s ease-out infinite;
+}
+@keyframes arc-expand {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ── HUD PANEL ───────────────────────────────────────────── */
+.hud-panel {
+  background: var(--hud-panel-bg);
+  border: 1px solid var(--hud-border);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+.hud-panel::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--hud-blue), transparent);
+  opacity: 0.6;
+}
 @keyframes marquee {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .animate-marquee {
-  display: inline-block;
-  white-space: nowrap;
   animation: marquee 30s linear infinite;
 }
