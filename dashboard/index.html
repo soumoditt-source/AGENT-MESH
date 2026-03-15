@@ -53,7 +53,7 @@
     </div>
 
     <div class="input-group">
-      <label class="input-label">RESEARCH TOPIC</label>
+      <label class="input-label" for="topicInput">RESEARCH TOPIC</label>
       <div class="input-wrapper">
         <input
           type="text"
@@ -69,16 +69,16 @@
 
     <div class="controls-row">
       <div class="select-group">
-        <label class="input-label">PRIORITY</label>
-        <select id="prioritySelect" class="hud-select">
+        <label class="input-label" for="prioritySelect">PRIORITY</label>
+        <select id="prioritySelect" class="hud-select" aria-label="Research Priority Level">
           <option value="High">HIGH</option>
           <option value="Medium" selected>MEDIUM</option>
           <option value="Low">LOW</option>
         </select>
       </div>
       <div class="select-group">
-        <label class="input-label">RETRIES</label>
-        <select id="retriesSelect" class="hud-select">
+        <label class="input-label" for="retriesSelect">RETRIES</label>
+        <select id="retriesSelect" class="hud-select" aria-label="Research Retention Retries">
           <option value="1">1×</option>
           <option value="2" selected>2×</option>
           <option value="3">3×</option>
@@ -147,9 +147,9 @@
       <span class="panel-icon">▶</span>
       <span>AGENT TERMINAL</span>
       <div class="terminal-controls">
-        <span class="tc tc-red" onclick="clearTerminal()"></span>
-        <span class="tc tc-yellow"></span>
-        <span class="tc tc-green"></span>
+        <button class="tc tc-red" onclick="clearTerminal()" aria-label="Clear Terminal"></button>
+        <button class="tc tc-yellow" aria-label="Minimize Terminal"></button>
+        <button class="tc tc-green" aria-label="Maximize Terminal"></button>
       </div>
     </div>
 
@@ -259,9 +259,9 @@
     <span>SYSTEM NOMINAL</span>
   </div>
   <div class="footer-right">
-    <a href="https://testnet.snowtrace.io" target="_blank" class="footer-link">SNOWTRACE ↗</a>
+    <a href="https://testnet.snowtrace.io" target="_blank" rel="noopener noreferrer" class="footer-link">SNOWTRACE ↗</a>
     <span class="sep">|</span>
-    <a href="#" onclick="window.open('/health')" class="footer-link">HEALTH ↗</a>
+    <a href="#" onclick="window.open('/health')" rel="noopener noreferrer" class="footer-link">HEALTH ↗</a>
   </div>
 </footer>
 

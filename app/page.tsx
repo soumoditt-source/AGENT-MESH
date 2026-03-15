@@ -580,6 +580,36 @@ export default function AgentMeshPage() {
             {/* 3D Layout */}
             <div className="relative h-[90vh] flex items-center justify-center"
               style={{ transformStyle: 'preserve-3d', perspective: '1500px' }}>
+                
+                {/* Background Grid Pattern */}
+                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[500px] w-full opacity-20 pointer-events-none"
+                  style={{ background: 'radial-gradient(circle at center, rgba(0,229,255,0.15) 0%, transparent 70%)', backgroundImage: 'radial-gradient(rgba(0,229,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+
+                {/* Capability Matrix - Top Center (Fills Empty Middle) */}
+                <div className={`absolute top-[5%] left-1/2 -translate-x-1/2 z-10 hidden md:block transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0 -translate-y-10'}`}
+                  style={{ transform: `translateX(-50%) translateZ(100px) translateY(${scrollY * 0.05}px)`, opacity: heroOpacity }}>
+                  <div className="glass-panel p-4 flex gap-6 items-center rounded-2xl border-cyan-400/20">
+                    <div className="flex flex-col items-center">
+                      <span className="font-mono text-[10px] text-cyan-400/60 mb-1">LATENCY</span>
+                      <span className="font-mono text-sm text-cyan-300">14ms</span>
+                    </div>
+                    <div className="h-8 w-px bg-cyan-400/20" />
+                    <div className="flex flex-col items-center">
+                      <span className="font-mono text-[10px] text-cyan-400/60 mb-1">STABILITY</span>
+                      <span className="font-mono text-sm text-cyan-300">99.9%</span>
+                    </div>
+                    <div className="h-8 w-px bg-cyan-400/20" />
+                    <div className="flex flex-col items-center">
+                      <span className="font-mono text-[10px] text-cyan-400/60 mb-1">VIBE-INDEX</span>
+                      <span className="font-mono text-sm text-[#00e5ff] font-bold">MAX</span>
+                    </div>
+                    <div className="h-8 w-px bg-cyan-400/20" />
+                    <div className="flex flex-col items-center">
+                      <span className="font-mono text-[10px] text-cyan-400/60 mb-1">UPTIME</span>
+                      <span className="font-mono text-sm text-cyan-300">∞</span>
+                    </div>
+                  </div>
+                </div>
 
               {/* Left — Terminal */}
               <div

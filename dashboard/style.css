@@ -189,6 +189,7 @@ body {
   border-radius: 4px;
   display: flex; flex-direction: column;
   overflow: hidden;
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   position: relative;
 }
@@ -266,11 +267,11 @@ body {
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
+/* Input layout */
 .controls-row {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 8px; padding: 0 16px 12px;
 }
-.select-group {}
 .hud-select {
   width: 100%;
   background: rgba(0,180,255,0.05);
@@ -402,10 +403,7 @@ body {
   margin-top: 4px;
 }
 
-/* ── TERMINAL PANEL ──────────────────────────────────────── */
-.terminal-panel { }
-
-/* Sub-agent rows */
+/* Terminal Data Display */
 .sub-agents {
   display: flex; flex-direction: column;
   gap: 2px; padding: 8px 12px;
@@ -557,9 +555,7 @@ body {
 }
 .tx-link:hover { color: var(--text-hi); background: rgba(0,180,255,0.15); }
 
-/* ── REPORT PANEL ────────────────────────────────────────── */
-.report-panel { }
-
+/* Intelligence Synthesis Report */
 .report-actions {
   margin-left: auto;
   display: flex; gap: 6px;
@@ -687,6 +683,7 @@ body {
   background: rgba(5,10,20,0.9);
   display: flex; align-items: center; justify-content: center;
   z-index: 1000;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 .loading-core {
