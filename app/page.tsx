@@ -197,19 +197,23 @@ function AgentModal({
         <div className="flex-1 overflow-y-auto p-6 space-y-5">
           {/* Input form */}
           {!result && (
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div>
-                <label className="font-mono text-xs text-cyan-400/70 tracking-widest uppercase mb-2 block">
-                  Research Topic
+                <label className="font-mono text-xs text-cyan-400/70 tracking-widest uppercase mb-2 block flex items-center justify-between">
+                  <span>Research Objective</span>
+                  {bypassCode.trim().toUpperCase() === 'DAKSH_FULLSTACKSHINOBI' && (
+                    <span className="flex items-center gap-1 text-[10px] text-yellow-400 font-bold animate-pulse">
+                      <Zap className="h-3 w-3" /> PREMIUM DATA ACTIVE
+                    </span>
+                  )}
                 </label>
                 <input
                   type="text"
                   value={topic}
                   onChange={e => setTopic(e.target.value)}
-                  onKeyDown={e => { if (e.key === 'Enter' && !running) runAgent() }}
-                  placeholder="e.g. AI regulation in India 2025, DeFi security…"
+                  placeholder="e.g. Future of Layer 2 Scaling"
                   disabled={running}
-                  className="w-full bg-cyan-400/5 border border-cyan-400/20 rounded-lg px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/20 transition-all disabled:opacity-50"
+                  className="w-full bg-cyan-400/5 border border-cyan-400/20 rounded-lg px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-cyan-400/60 transition-all disabled:opacity-50"
                 />
               </div>
 

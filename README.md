@@ -25,18 +25,24 @@
 
 ---
 
-## 🦸‍♂️ The Marvel Avatar: Iron Man's Arc Reactor
+# AgentMesh v1.1 — "JARVIS" Update 🦾
+**Autonomous x402 Intelligence Network with Parallel Multi-Node Synthesis**
 
-In a world where AI agents are blind and broke, **AgentMesh is Tony Stark**. 
-It doesn't just read the internet—it **earns, spends, and transacts entirely on its own**. 
+AgentMesh is a world-class autonomous research agent designed for high-fidelity intelligence gathering. Leveraging the Avalanche Fuji Testnet and x402 Payment Required protocols, it performs clinical-grade research across 8 specialized intelligence nodes in parallel.
 
-The core of AgentMesh is its **x402 Payment Engine* (The Arc Reactor). When an AI hits a premium API paywall (`HTTP 402 Payment Required`), AgentMesh doesn't crash. It seamlessly fires a gasless USDC transaction via the `facinet` SDK on Avalanche Fuji, generates a cryptographic payment proof, and unlocks the data. 
+## 🚀 Key Features (v1.1 JARVIS)
+- **Parallel 8-Node Intelligence**: Concurrently queries News, Academic (arXiv), Social (Reddit/HN), Tech, Wiki, Crypto (CoinCap), Quotes, and Meteo (Location Intelligence).
+- **JARVIS HUD Interface**: High-end Iron Man inspired dashboard with real-time telemetry, scanlines, and hexagonal grid backgrounds.
+- **x402 Autonomous Payments**: Automatic payment handling using ERC-3009 and ERC-8004 registries on Avalanche Fuji.
+- **Multi-LLM Synthesis**: Advanced clinical reporting using a Gemini 3.1 Pro → Claude 3.5 Sonnet → DeepSeek fallback chain.
+- **Premium Bypass**: Integrated referral/bypass mechanism (`DAKSH_FULLSTACKSHINOBI`) for immediate premium access.
+- **Vercel High-Continuity**: Optimized for serverless edge execution with absolute URL resolution.
 
-*No humans. No credit cards. Pure autonomous finance.*
-
----
-
-## 🚀 The x402 Architecture Masterpiece
+## 🛠️ Tech Stack
+- **Frontend**: Next.js 15 (Turbopack), Tailwind CSS, Framer Motion
+- **Web3**: ethers.js, x402 Protocols, Avalanche Fuji Testnet
+- **AI**: Google Gemini SDK, OpenRouter (Claude/DeepSeek)
+- **Infrastructure**: Vercel Edge Runtime
 
 AgentMesh operates on a state-of-the-art multi-agent orchestration pattern integrated intimately with HTTP 402 payment rails.
 
