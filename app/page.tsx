@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef } from "react"
 import { HeroCharacter } from "@/components/hero-character"
 import { TerminalConsolePanel } from "@/components/terminal-console-panel"
+import { SystemStatusDashboard } from '@/components/system-status-dashboard'
 import { ResearchAgentPanel } from "@/components/research-agent-panel"
 import { AgentNetworkPanel } from "@/components/agent-network-panel"
 import { LoadingScreen } from "@/components/loading-screen"
@@ -188,6 +189,8 @@ function AgentModal({
           <button
             onClick={onClose}
             disabled={running}
+            title="Close Command Center"
+            aria-label="Close Command Center"
             className="w-8 h-8 rounded-lg border border-cyan-400/20 bg-cyan-400/5 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-cyan-400/40 transition-all disabled:opacity-40"
           >
             <X className="h-4 w-4" />
@@ -213,6 +216,8 @@ function AgentModal({
                   onChange={e => setTopic(e.target.value)}
                   placeholder="e.g. Future of Layer 2 Scaling"
                   disabled={running}
+                  title="Topic Input"
+                  aria-label="Research Topic"
                   className="w-full bg-cyan-400/5 border border-cyan-400/20 rounded-lg px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-cyan-400/60 transition-all disabled:opacity-50"
                 />
               </div>
@@ -224,6 +229,8 @@ function AgentModal({
                     value={priority}
                     onChange={e => setPriority(e.target.value)}
                     disabled={running}
+                    title="Research Priority"
+                    aria-label="Priority level"
                     className="w-full bg-cyan-400/5 border border-cyan-400/20 rounded-lg px-3 py-2.5 font-mono text-sm text-foreground outline-none focus:border-cyan-400/50 disabled:opacity-50"
                   >
                     <option value="High">HIGH</option>
@@ -237,6 +244,8 @@ function AgentModal({
                     value={retries}
                     onChange={e => setRetries(e.target.value)}
                     disabled={running}
+                    title="Max Retries"
+                    aria-label="Retry count"
                     className="w-full bg-cyan-400/5 border border-cyan-400/20 rounded-lg px-3 py-2.5 font-mono text-sm text-foreground outline-none focus:border-cyan-400/50 disabled:opacity-50"
                   >
                     <option value="1">1×</option>
@@ -647,8 +656,13 @@ export default function AgentMeshPage() {
                     </div>
                   </div>
 
+                  {/* LIVE SYSTEM STATUS DASHBOARD FOR JUDGES */}
+                  <div className="mt-4 transition-all hover:scale-[1.02] active:scale-[0.98]">
+                    <SystemStatusDashboard />
+                  </div>
+
                   {/* Operational Status Ticker */}
-                  <div className="mt-2 flex items-center gap-3 px-4 py-1.5 bg-background/40 border border-cyan-900/30 rounded-full backdrop-blur-md overflow-hidden max-w-[300px]">
+                  <div className="mt-4 flex items-center gap-3 px-4 py-1.5 bg-background/40 border border-cyan-900/30 rounded-full backdrop-blur-md overflow-hidden max-w-[300px]">
                     <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                     <div className="font-mono text-[9px] text-cyan-100/70 whitespace-nowrap animate-marquee">
                       SYSTEM STATUS: OPTIMAL // X402 GATEWAY READY // RESEARCH BRANCHES: 8 // ERC-8004 REGISTRY SYNCED //

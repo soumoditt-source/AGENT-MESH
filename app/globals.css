@@ -403,6 +403,7 @@
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .hud-panel::before {
   content: '';
