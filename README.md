@@ -17,74 +17,65 @@
   
   <p>
     <img src="https://img.shields.io/badge/Blockchain-Avalanche%20Fuji-red?style=for-the-badge&logo=avalanche" />
-    <img src="https://img.shields.io/badge/Payment-x402%20Protocol-00e5ff?style=for-the-badge" />
-    <img src="https://img.shields.io/badge/AI-Gemini%201.5%20Flash-orange?style=for-the-badge&logo=google" />
-    <img src="https://img.shields.io/badge/Frontend-Next.js%2015-black?style=for-the-badge&logo=next.js" />
+    <img src="https://img.shields.io/badge/Protocol-x402%20/%20HTTP--402-00e5ff?style=for-the-badge" />
+    <img src="https://img.shields.io/badge/AI-Gemini%203.1%20Pro-orange?style=for-the-badge&logo=google" />
+    <img src="https://img.shields.io/badge/Standards-ERC--3009%20|%20ERC--8004-9cf?style=for-the-badge" />
   </p>
 </div>
 
 ---
 
-# AgentMesh v1.1 — "JARVIS" Update 🦾
+# AgentMesh v1.1 — "JARVIS" Upgrade 🦾
 **Autonomous x402 Intelligence Network with Parallel Multi-Node Synthesis**
 
-AgentMesh is a world-class autonomous research agent designed for high-fidelity intelligence gathering. Leveraging the Avalanche Fuji Testnet and x402 Payment Required protocols, it performs clinical-grade research across 8 specialized intelligence nodes in parallel.
+AgentMesh is a clinical-grade autonomous research agent network. Built for the DAKSH 2026 Vibe-A-Thon, it leverages the **Avalanche Fuji Testnet** and **x402 (HTTP 402)** protocols to perform deep-dive intelligence gathering across 8 specialized nodes in parallel.
 
-## 🚀 Key Features (v1.1 JARVIS)
-- **Parallel 8-Node Intelligence**: Concurrently queries News, Academic (arXiv), Social (Reddit/HN), Tech, Wiki, Crypto (CoinCap), Quotes, and Meteo (Location Intelligence).
-- **JARVIS HUD Interface**: High-end Iron Man inspired dashboard with real-time telemetry, scanlines, and hexagonal grid backgrounds.
-- **x402 Autonomous Payments**: Automatic payment handling using ERC-3009 and ERC-8004 registries on Avalanche Fuji.
-- **Multi-LLM Synthesis**: Advanced clinical reporting using a Gemini 3.1 Pro → Claude 3.5 Sonnet → DeepSeek fallback chain.
-- **Premium Bypass**: Integrated referral/bypass mechanism (`DAKSH_FULLSTACKSHINOBI`) for immediate premium access.
-- **Vercel High-Continuity**: Optimized for serverless edge execution with absolute URL resolution.
+## 🚀 Key Features (v1.1 JARVIS Edition)
+- **Parallel 8-Node Intelligence Pulse**: Concurrently harvests data from News, Academic (arXiv), Social (Reddit/HN), Tech, Wikipedia, Crypto (CoinCap), ZenQuotes, and Open-Meteo.
+- **JARVIS HUD DASHBOARD**: Cinematic Next.js 15 interface with real-time telemetry, animated neural grids, and hexadecimal field backgrounds.
+- **Autonomous Payment Rails**: Gasless USDC settlement using **ERC-3009** authorizations and a custom x402 facilitator bridge.
+- **Resilient AI Synthesis**: 800-1200 word clinical dossiers generated via a **Gemini 3.1 Pro** primary brain with a redundant failover chain (Claude 3.5 Sonnet → DeepSeek → Mistral).
+- **On-Chain Identity**: Fully compliant with **ERC-8004** for agent registration and discoverability.
 
-## 🛠️ Tech Stack
-- **Frontend**: Next.js 15 (Turbopack), Tailwind CSS, Framer Motion
-- **Web3**: ethers.js, x402 Protocols, Avalanche Fuji Testnet
-- **AI**: Google Gemini SDK, OpenRouter (Claude/DeepSeek)
-- **Infrastructure**: Vercel Edge Runtime
+---
 
-AgentMesh operates on a state-of-the-art multi-agent orchestration pattern integrated intimately with HTTP 402 payment rails.
+## 🛠️ The Fullstack Shinobi Architecture
 
+AgentMesh operates on a state-of-the-art multi-agent orchestration pattern integrated intimately with blockchain-verified payment rails.
+
+<div align="center">
   <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHNmaHg4eTJ5M2FoYzVuOThrOTMwbHJhNjFvbDg1dzluNGRiMXkyciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AbYxDs20DECQw/giphy.gif" alt="Iron Man Intelligence" width="80%" style="border-radius: 8px; border: 1px solid #00e5ff;" />
+</div>
 
-### How it Flows:
-1. **The Catalyst (User Query):** You request deep-dive intelligence (e.g., "Future of Agentic AI 2026").
-2. **The Orchestrator (Multi-LLM):** The Master Agent breaks your request into 3 sub-queries using **Gemini 3.1 Pro** (High Reasoning). If Gemini is down, it automatically fails over to **OpenRouter** or **Hugging Face**.
-3. **The x402 Paywalls (Sub-Agents):** 
-   - Agents hit premium endpoints (`/research/news`, `/research/crypto`, etc.).
-   - The Gateway responds: `402 Payment Required`.
-4. **The Arc Reactor (Auto-Payment):**
-   - AgentMesh automatically signs an ERC-3009 gasless transaction.
-   - It pays `0.1 USDC` to the API facilitator on Avalanche Fuji.
-   - It retries the request with an `X-Payment-Proof` header representing the confirmed `txHash`.
-   - *Demo Bypass:* Alternatively uses standard `X-Bypass-Code: DAKSH_FULLSTACKSHINOBI` for free verification.
-5. **The Synthesis:** Data is ingested, collated, and synthesized into a master intelligence report with a multi-layered failover chain ensuring 100% uptime.
-6. **The Chronicle (ERC-8004):** The agent registers its creation and existence on the blockchain via `AgentRegistry.sol`.
-
----
-
-## 📡 Premium x402 Integrated Endpoints
-
-Our gateway is wired to real-world data streams, all protected by the x402 protocol:
-
-| Endpoint | Intelligence Source | Paywall State |
-|----------|---------------------|---------------|
-| `GET /research/news` | NewsAPI & Guardian API | **Active 402** |
-| `GET /research/crypto` | CoinCap Live Market Data | **Active 402** |
-| `GET /research/quotes` | ZenQuotes Tech Analytics | **Active 402** |
-| `GET /research/academic` | arXiv Papers | Free Tier |
-| `GET /research/tech` | HackerNews Algolia | Free Tier |
+### Operational Workflow:
+1. **Intelligence Request:** User inputs a complex research objective into the Command Center.
+2. **Decomposition (Gemini 3.1 Pro):** The master orchestrator breaks down the objective into 3 distinct investigative pathways.
+3. **The x402 Gateway:** 
+   - Sub-agents attempt data retrieval through the mesh gateway.
+   - The gateway returns `402 Payment Required`.
+4. **Autonomous Settlement:**
+   - AgentMesh signs a gasless **EIP-712** authorization.
+   - Payments are processed via the `facinet` facilitator network on Avalanche Fuji.
+   - Verified requests proceed with `X-Payment-Proof` authentication.
+5. **Clinical Synthesis:** Distributed findings are collated into a professional intelligence dossier with cross-source correlation.
+6. **Registry Finalization:** The agent provides a clinical `agent-card.json` identity to the **ERC-8004 Registry**.
 
 ---
 
-## 💻 Tech Stack: The Fullstack Shinobi Arsenal
+## 📡 Premium x402 Intelligence Endpoints
 
-- **Frontend HUD:** Next.js 15, React 19, Tailwind CSS v4, custom Arc-Reactor Glow UI.
-- **Backend Core:** Node.js API Gateway, Next.js Serverless Functions.
-- **Web3 / Crypto:** `ethers.js` v6, `facinet` SDK, Avalanche Fuji Testnet.
-- **Smart Contracts:** Solidity, Hardhat, ERC-8004 Agent Registry.
-- **AI Brain:** Google Gemini 1.5 Flash.
+Every research node in the mesh is a protected resource requiring tokenized settlement.
+
+| Node Identifier | Data Source | Protocol | State |
+|:---|:---|:---|:---|
+| `NEWS_NODE` | Global NewsAPI + Guardian | x402 / HTTP-402 | **ONLINE** |
+| `ACADEMIC_NODE`| arXiv Research Repository | x402 / HTTP-402 | **ONLINE** |
+| `SOCIAL_NODE` | Reddit & Discourse Meta | x402 / HTTP-402 | **ONLINE** |
+| `TECH_NODE` | HackerNews & Algolia | x402 / HTTP-402 | **ONLINE** |
+| `WIKI_NODE` | Wikipedia Knowledge Base | x402 / HTTP-402 | **ONLINE** |
+| `CRYPTO_NODE` | CoinCap Asset Metrics | x402 / HTTP-402 | **ONLINE** |
+| `METEO_NODE` | Location Intelligence (Weather) | x402 / HTTP-402 | **ONLINE** |
+| `QUOTE_NODE` | ZenQuotes Philosophical Layer | x402 / HTTP-402 | **ONLINE** |
 
 ---
 
@@ -92,29 +83,34 @@ Our gateway is wired to real-world data streams, all protected by the x402 proto
 
 ### Run it Locally
 ```bash
-# 1. Clone the repo
+# 1. Clone the Arsenal
 git clone https://github.com/soumoditt-source/AGENT-MESH.git
 cd AGENT-MESH
 
-# 2. Install dependencies
+# 2. Install Dependencies
 npm install
 
-# 3. Setup Variables (.env)
-# PRIVATE_KEY=your_key
-# RECIPIENT=wallet_address
-# GEMINI_API_KEY=your_key
+# 3. Environment Configuration (.env)
+# PRIVATE_KEY=  (Avalanche Fuji PK)
+# RECIPIENT=    (Vault Address)
+# GEMINI_API_KEY= (Google AI Studio)
 
-# 4. Boot the Arc Reactor
+# 4. Initialize Core
 npm run dev
 ```
-Navigate to `http://localhost:3000` to access the Command Center. Use referral code `DAKSH_FULLSTACKSHINOBI` to bypass live payments during demonstrations.
+
+> [!TIP]
+> Use the emergency override code `DAKSH_FULLSTACKSHINOBI` in the Command Center to bypass payment verification during live judging.
 
 ---
+
 <br>
 <div align="center">
   <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnd3cnFsOWFieGZhMDE4dW1yaGNsejAzYWlkbzRpc3RqdmU3eGVnbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U4FkC2VqpeNRHjTDQ5/giphy.gif" alt="Tony Stark Conclusion" width="100%" style="border-radius: 12px; opacity: 0.9;" />
 </div>
-<br><br>
+<br>
+
+<div align="center">
   <h3>Team FULLSTACK SHINOBI</h3>
   <p><b>Leader:</b> SOUMODITYA DAS | <b>Advisor:</b> SOUNAK KUMAR MONDAL | <b>Presenter:</b> RAJASHRI CHAUDHURI</p>
   <i>"We didn't just build an app. We built an autonomous digital citizen."</i>
