@@ -1,0 +1,19 @@
+{
+  "name": "AgentMesh Node-01",
+  "version": "1.1.0",
+  "description": "Autonomous x402 Intelligence Gathering Node specializing in clinical multi-source synthesis.",
+  "avatar": "https://agentmesh.app/icon.svg",
+  "capabilities": [
+    "x402-payment-protocol",
+    "erc-3009-gasless-payments",
+    "multi-llm-chain-synthesis",
+    "real-time-location-intelligence"
+  ],
+  "author": "DAKSH 2026 Developer",
+  "network": "Avalanche Fuji Testnet",
+  "contract_compliance": {
+    "erc_8004": true,
+    "erc_3009": true,
+    "http_402": true
+  }
+}
