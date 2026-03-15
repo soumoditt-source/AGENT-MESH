@@ -157,6 +157,7 @@ function AgentModal({
         elapsed:  r.elapsed,
         txList:   r.paymentList || [],
         topic:    topic.trim(),
+        report:   r.report
       })
     } catch (err: any) {
       clearInterval(simInterval)
