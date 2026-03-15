@@ -87,9 +87,9 @@ export function SystemStatusDashboard() {
       </div>
 
       <div className="pt-2">
-        <div className="h-1 w-full bg-cyan-900/20 rounded-full overflow-hidden">
-          <div className="h-full bg-cyan-400 animate-[progress_5s_ease-in-out_infinite]" style={{ width: '100%' }} />
-        </div>
+        <div className="w-full h-1 bg-cyan-900/20 rounded-full overflow-hidden blur-[0.5px]">
+        <div className="h-full bg-cyan-400 animate-[progress_5s_ease-in-out_infinite] shadow-[0_0_15px_rgba(0,229,255,0.6)]" style={{ width: '100%' }} />
+      </div>
       </div>
     </div>
   )
